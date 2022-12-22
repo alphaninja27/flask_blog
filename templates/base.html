@@ -1,0 +1,32 @@
+<head>
+    <style>
+        nav a {
+            color: #1da2d6;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            background-color: #f9f9f9
+        }
+        nav a:hover {
+            background-color: #fbffff;
+            color: #146092
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href = "{{url_for('register')}}">Register</a>
+        <a href = "{{url_for('login')}}">Login</a>
+        <a href = "{{url_for('logout')}}">Logout</a>
+        <a href = "{{url_for('blogs')}}">Blogs</a>
+        <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+    </nav>
+    <hr>
+    <div class = 'content'>
+        {% block content%}
+        
+        {%endblock%}
+    </div>
+</body>

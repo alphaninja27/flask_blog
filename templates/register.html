@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+    <form action = "" method = 'POST'>
+        <table>
+            <tr>
+                <td>Email</td>
+                <td><input type = 'email' name = 'email'></td>
+            </tr>
+            <tr>
+                <td>UserName</td>
+                <td><input name = 'username'></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type = 'password' name = 'password'></td>
+            </tr>
+        </table>
+        <p>
+            <input type = 'submit' value = "Register"/>
+        </p>
+    </form>
+    <h3>Already Have An Account?</h3>
+    <h3><a href = "{{url_for('login')}}">Login</a></h3>
+</center>
+{%endblock%}

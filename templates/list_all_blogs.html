@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        th{
+            background-color: green;
+        }
+        table, td, th{
+            border: 1px solid black; border-radius: 12px;
+        }
+    </style>
+
+    {% if current_user.username == Null %}
+    <h3>Welcome Guest!</h3>
+    {% else %}
+    <h3>Welcome {{ current_user.username }}</h3>
+    {% endif %}
+    <table>
+        <thead>
+            <th>
+                Author
+            </th>
+            <th>
+                Language
+            </th>
+            <th>
+                Content
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Read Count
+            </th>
+        </thead>
+        <tbody>
+            {% for a_blog in all_blogs %}
+            <tr>
+                <td>
+                    {{ all_users[a_blog.category_id - 1].username }}
+                </td>
+                <td>
+                   {{ all_categories[a_blog.category_id - 1] }}
+                </td>
+                {% if current_user.is_authenticated %}
+                    <td><a href = "/blogDetail/{{a_blog.id}}/{{all_users[a_blog.blog_user_id-1].username}}/{{ all_categories[a_blog.category_id - 1] }}">{{ a_blog.blog_text|safe|truncate(275) }}</a></td>
+                {% else %}
+                <td>
+                    {{ a_blog.blog_text|safe|truncate(275) }}
+                </td>
+                {% endif %}
+                <td>
+                    {{ a_blog.blog_rating_count }}
+                </td>
+                <td>
+                    {{ a_blog.blog_read_count }}
+                </td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

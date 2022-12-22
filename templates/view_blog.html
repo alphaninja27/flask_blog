@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+    <h1> Hello {{current_user.username}} </h1>, Your Blogs are - 
+    <table style = "border: 1px solid blue; border-radius: 10px; padding: 3%; width: 80%;">
+        <thead>
+            <tr>
+                <th>
+                    Language
+                </th>
+                <th>
+                    Content
+                </th>
+                <th>
+                    Read Count
+                </th>
+                <th>
+                    Rating Count
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a_blog in all_self_blogs %}
+            <tr>
+                <td>
+                    {{ all_categories[a_blog.category_id - 1] }}
+                </td>
+                <td>
+                    <a href = "/self_blog_detail/{{ a_blog.id }}/{{ all_categories[a_blog.category_id - 1] }}">{{ a_blog.blog_text|safe|truncate(275) }}</a>
+                </td>
+                <td>
+                    {{ a_blog.blog_read_count }}
+                </td>
+                <td>
+                    {{ a_blog.blog_rating_count }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</center>
+{%endblock%}
